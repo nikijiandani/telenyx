@@ -1,0 +1,73 @@
+a {
+  text-decoration: none;
+  color: var(--mainBlackText);
+}
+a:hover {
+  text-decoration: underline;
+}
+.fa-search:before {
+  content: "\f002";
+  color: var(--mainBlackText);
+  margin-right: 1rem;
+}
+.fa-search:hover {
+  background: var(--mainRed);
+  color: var(--mainWhite) !important;
+}
+.fa-map-marker-alt:before {
+  content: "\f3c5";
+  margin-right: 0.5rem;
+}
+.fa-user-circle:before {
+  content: "\f2bd";
+  margin-right: 0.5rem;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.nav-primary {
+  background: var(--mainRed);
+  min-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+.nav-primary a {
+  color: var(--mainWhite);
+  text-transform: uppercase;
+}
+.nav-primary .personal {
+  font-weight: 600;
+}
+.nav-primary .menu-left {
+  display: flex;
+  justify-content: space-around;
+  width: 25%;
+}
+.nav-primary .menu-right {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+.nav-secondary {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.nav-secondary img {
+  max-height: 39px;
+  max-width: 100%;
+  padding-left: 1rem;
+}
+.nav-secondary .menu-left {
+  display: flex;
+  align-items: center;
+}
+.nav-secondary .menu-left a {
+  margin-left: 1rem;
+}

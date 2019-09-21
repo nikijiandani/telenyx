@@ -1,0 +1,35 @@
+.chat-box {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 552px;
+  width: 508px;
+  border: 1px solid lightgray;
+}
+.chat-logo {
+  width: 2.2rem;
+  margin-left: 0.5rem;
+}
+.fa-bars:before {
+  content: "\f0c9";
+  color: var(--mainWhite);
+  font-size: 2rem;
+  margin-right: 0.5rem;
+}
+.chat-box header {
+  height: 56px;
+  background: var(--mainBlackBackground);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem;
+  align-items: center;
+}
+.chat-box header p {
+  color: var(--mainWhite);
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+.chat-box .menu-left {
+  display: flex;
+}
