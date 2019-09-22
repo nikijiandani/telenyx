@@ -69,19 +69,35 @@
   height: 400px;
 }
 .message-list li {
-  display: flex;
-  align-items: flex-end;
   margin-bottom: 1rem;
-}
-.message-list li p {
   list-style-type: none;
-  background: var(--mainLightGrey);
-  border: 1px solid var(--mainDarkGrey);
-  border-radius: 16px 16px 16px 0;
   padding: 1rem;
-  margin: 0;
+  margin-bottom: 0;
+  width: 70%;
 }
-.message-list span {
+.message-list li .user-chat {
+  float: right;
+}
+.message-list .bot-chat div {
+  background: var(--mainLightGrey);
+  border-radius: 16px 16px 16px 0;
+  border: 1px solid var(--mainDarkGrey);
+  padding: 0.5rem;
+}
+.message-list .user-chat div {
+  background: var(--mainLightBlue);
+  border-radius: 16px 16px 0 16px;
+  border: 1px solid var(--mainDarkGrey);
+  padding: 0.5rem;
+}
+.message-list .name {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.message-list .time {
+  font-size: 0.8rem;
+}
+.message-list .bot-logo {
   border: 2px solid var(--mainBlackBackground);
   border-radius: 50%;
   font-size: 1.5rem;

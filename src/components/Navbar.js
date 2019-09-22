@@ -30,7 +30,7 @@ export default function Navbar() {
             <span>
               <i className="far fa-user-circle"></i>
             </span>
-            Sign in
+            LAURA BREYER
           </a>
         </div>
       </nav>

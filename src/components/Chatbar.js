@@ -1,26 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import smallLogo from "../logo-sm.svg";
 import "../styles/chatbar.css";
 
-export default function Chatbar({ data }) {
+export default function Chatbar() {
   const [messages, setMessages] = useState([]);
+  const [fetchData, setFetchData] = useState(
+    '{"queryInput":{"text":{"text":"Hello!","languageCode":"en"}},"queryParams":{"timeZone":"America/Toronto"}}'
+  );
 
   const handleMessage = e => {
     e.preventDefault();
     let message = {
       firstName: "Laura",
+      userId: 2,
       content: e.target.children[0].value,
       createdAt: new Date()
     };
-    let time =
-      message.createdAt.getHours() + ":" + message.createdAt.getMinutes();
-    console.log(time);
-
     let newMessageList = [...messages, message];
     setMessages(newMessageList);
+    let data = `{"queryInput":{"text":{"text":"${message.content}","languageCode":"en"}},"queryParams":{"timeZone":"America/Toronto"}}`;
+    console.log(data);
+    setFetchData(data);
+    console.log(fetchData);
     e.target.children[0].value = "";
   };
 
+  useEffect(() => {
+    fetch(
+      "https://dialogflow.googleapis.com/v2/projects/telenyx-bganmh/agent/sessions/b5a0be4b-2502-a7ae-693a-2a68585f7593:detectIntent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: process.env.AUTH_KEY
+        },
+        body: fetchData
+      }
+    )
+      .then(function(response) {
+        return response.json(); // pass the data as promise to next then block
+      })
+      .then(function(data) {
+        console.log(data);
+        let message = {
+          firstName: "Roger",
+          userId: 1,
+          content: data.queryResult && data.queryResult.fulfillmentText,
+          createdAt: new Date()
+        };
+        let newMessageList = [...messages, message];
+        setMessages(newMessageList);
+      })
+      .catch(function(error) {
+        console.log("Request failed", error);
+      });
+  }, [fetchData]);
+  //
   return (
     <main>
       <div className="chat-box">
@@ -34,43 +69,38 @@ export default function Chatbar({ data }) {
           </span>
         </header>
         <ul className="message-list">
-          <li>{data}</li>
           {messages.map((msg, i) => (
-            <li key={i}>{msg.content}</li>
+            <div key={i}>
+              {msg.userId === 2 ? (
+                <li key={i} className="user-chat">
+                  <div>
+                    <span className="name">{msg.firstName}</span>
+                    <span className="time">
+                      {msg.createdAt.getHours() +
+                        ":" +
+                        msg.createdAt.getMinutes()}
+                    </span>
+                    <p>{msg.content}</p>
+                  </div>
+                </li>
+              ) : (
+                <li key={i} className="bot-chat">
+                  <span className="bot-logo">
+                    <i className="fas fa-robot"></i>
+                  </span>
+                  <div>
+                    <span className="name">Roger</span>
+                    <span className="time">
+                      {msg.createdAt.getHours() +
+                        ":" +
+                        msg.createdAt.getMinutes()}
+                    </span>
+                    <p>{msg.content}</p>
+                  </div>
+                </li>
+              )}
+            </div>
           ))}
-          <li>
-            <span>
-              <i className="fas fa-robot"></i>
-            </span>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-              consequatur quidem molestias iure rem exercitationem, recusandae
-              dolorum maiores, ullam corrupti, nulla dolore ea temporibus
-              provident. Culpa nobis nesciunt architecto ex.
-            </p>
-          </li>
-          <li>
-            <span>
-              <i className="fas fa-robot"></i>
-            </span>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-              consequatur quidem molestias iure rem exercitationem, recusandae
-              dolorum maiores, ullam corrupti, nulla dolore ea temporibus
-              provident. Culpa nobis nesciunt architecto ex.
-            </p>
-          </li>
-          <li>
-            <span>
-              <i className="fas fa-robot"></i>
-            </span>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-              consequatur quidem molestias iure rem exercitationem, recusandae
-              dolorum maiores, ullam corrupti, nulla dolore ea temporibus
-              provident. Culpa nobis nesciunt architecto ex.
-            </p>
-          </li>
         </ul>
         <section className="chat-input">
           <form onSubmit={handleMessage}>
