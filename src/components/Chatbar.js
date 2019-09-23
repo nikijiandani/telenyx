@@ -8,6 +8,12 @@ export default function Chatbar() {
     '{"queryInput":{"text":{"text":"Hello!","languageCode":"en"}},"queryParams":{"timeZone":"America/Toronto"}}'
   );
 
+  let messagesEndRef = React.createRef();
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   const handleMessage = e => {
     e.preventDefault();
     let message = {
@@ -32,7 +38,8 @@ export default function Chatbar() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: process.env.AUTH_KEY
+          Authorization:
+            "Bearer ya29.c.Kl6MB5rHuzxXOKFwFnZ94IcM8X4UFZh9mVa9_f7n3UvZMazpw57rxs23a6HIXXdaZhbyQOHK83bA3UI0T8fqIGttdpIeO7IkahA_8ASSwNwh6OWD8BqgqZ-Jju_wE29k"
         },
         body: fetchData
       }
@@ -55,6 +62,10 @@ export default function Chatbar() {
         console.log("Request failed", error);
       });
   }, [fetchData]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
   //
   return (
     <main>
@@ -101,6 +112,7 @@ export default function Chatbar() {
               )}
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </ul>
         <section className="chat-input">
           <form onSubmit={handleMessage}>
