@@ -1,6 +1,6 @@
 # Telenyx
 
-Telenyx is a React App made for the Rogers challenge during the 2019 Tech Jam by Elevate. It uses Dialogflow to communicate with a chatbot to assist in the buying process of Rogers smartphones.
+Telenyx is a chatbot React App made for the Rogers challenge during the 2019 Tech Jam by Elevate. It uses Dialogflow to communicate with a chatbot to assist in the buying process of Rogers smartphones.
 
 ## Contributors to this project:
 
