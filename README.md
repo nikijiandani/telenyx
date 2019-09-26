@@ -6,7 +6,7 @@ Telenyx is a chatbot React App made for the Rogers challenge during the 2019 Tec
 
 [Laura Bresson](https://github.com/LauraBresson), 
 [Nikita Jiandani](https://github.com/nikijiandani), 
-Diana Koval, 
+[Diana Koval](https://github.com/dkhlv), 
 Enyinna Mbagwu, 
 Mariia Matviichuk, 
 [Daniela Isaza Toro](https://www.linkedin.com/in/danielaisazatoro/)
